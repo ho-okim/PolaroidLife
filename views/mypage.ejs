@@ -1,0 +1,89 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('header.ejs') %>
+  <section class="sec mypage-info">
+    <form action="/edit" method="post">
+      <div class="container">
+        <div class="row">
+            <div class="box col-3 g-0">
+              <% if(user.profileImg) { %>
+                <img src="/img/<%= user.profileImg %>" class="mypage-img" alt="profile image">
+              <% } else { %>
+                <img src="/img/profileIconDefault.png" alt="default profile image" class="profileImg mypage-img">
+              <% } %>
+            </div>
+            <div class="box col-9 g-0 p-0">
+              <div class="info-wrap">
+                <div class="infoText-wrap">
+                  <textarea type="text" name="nickname" class="mypage-nickname fw-bold infoTextArea" readonly><%= user.nickname %></textarea>
+                  <textarea type="text" name="intro" class="mypage-intro infoTextArea" readonly><%= user.intro %></textarea>
+                </div>
+                <div class="info-edit-wrap d-flex justify-content-end">
+                  <button type="button" class="infoEditBtn" data-id="<%= user.id %>"><i class="bi bi-pencil"></i></button>
+                  <button type="reset" class="infoResetBtn"></button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </form> 
+  </section>
+  <section class="sec post-list">
+    <div class="container">
+        <% for(let i = 0; i < posts.length ; i++) { %>
+          <div class="blog-list">
+          <form action="/post/<%= posts[i].id %>" method="post">
+            <div class="blog-item">
+            <div class="blog-content-wrap">
+              <div class="content-top d-flex">
+                <a href="#" class="profileLink fw-bold">
+                  <% if(posts[i].User.profileImg) { %>
+                    <img src="/img/<%= posts[i].User.profileImg %>" alt="default profile image" class="profileImg">
+                    <% } else { %>
+                  <img src="/img/profileIconDefault.png" alt="default profile image" class="profileImg">
+                  <% } %>
+                  <%= posts[i].User.nickname %></a>
+                <div class="date"><p class=""><%= posts[i].createdAt.toLocaleString("ko-kr", {dateStyle:'long'}) %></p></div>
+              </div>
+              <% if(posts[i].postImg) { %>
+              <img src="/img/<%= posts[i].postImg %>" alt="user post image" class="postImg">
+              <% } %>
+              <textarea type="text" name="text" class="blog-textarea" readonly><%= posts[i].text %></textarea>
+            </div>
+            <div class="btn-wrap gap-2 d-flex justify-content-end">
+              <button type="button" class="edit" data-id="<%=posts[i].id %>"><i class="bi bi-pencil"></i></button>
+              <button type="reset" class="del" data-id="<%=posts[i].id %>"><i class="bi bi-trash3"></i></button>
+            </div>
+            </div>
+          </form>
+          </div>
+        <% } %>
+    </div>
+
+        <div class="pagination justify-content-center">
+          <% for(let i = 0; i < totalPage; i++){ %>
+            <% if((i + 1) == pageNum) { %>
+              <a href="/mypage/<%= (i + 1) %>" class="currentPage"><%= (i + 1) %></a>
+            <% } else { %>
+              <a href="/mypage/<%= (i + 1) %>"><%= (i + 1) %></a>
+            <% } %>
+          <% } %>
+        </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
+
+</body>
+</html> -->

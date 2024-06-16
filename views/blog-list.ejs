@@ -1,0 +1,50 @@
+<div class="container">
+  <% for(let i = 0; i < posts.length ; i++) { %>
+    <div class="blog-list">
+    <form action="/post/<%= posts[i].id %>" method="post" enctype="multipart/form-data">
+        <div class="blog-item">
+          <div class="blog-content-wrap">
+            <div class="content-top d-flex">
+              <a href="/userPage/<%= posts[i].userId %>" class="profileLink fw-bold d-flex align-items-center justify-content-center" data-userPageId="<%= posts[i].userId %>">
+                <div>
+                <% if(posts[i].User.profileImg) { %>
+                  <img src="/img/<%= posts[i].User.profileImg %>" alt="default profile image" class="profileImg">
+                <% } else { %>
+                  <img src="/img/profileIconDefault.png" alt="default profile image" class="profileImg">
+                <% } %>
+                </div>
+                <div class="d-flex content-user-nickname">
+                  <p class="align-self-center"><%= posts[i].User.nickname %></p>
+                </div>
+              </a>
+              <div class="date">
+                <p class="year"><%= posts[i].createdAt.toLocaleString("ko-kr", {dateStyle:'long'}) %></p>
+                <p class="time"><%= posts[i].createdAt.toLocaleString("ko-kr").slice(13, ) %></p>
+              </div>
+            </div>
+            <% if(posts[i].postImg) { %>
+              <div class="postImgWrap">
+                <img src="/img/<%= posts[i].postImg %>" alt="user post image" class="postImg">
+                <div class="fileBox" data-id="<%= posts[i].id %>">
+                  <!-- <div class="preview d-flex justify-content-center align-items-center">
+                    <img src="" alt="" class="previewImg">
+                    <img src="/img/fileBox.png" alt="" class="previewDefaultImg">
+                    <label for="file<%= posts[i].id %>" class="fileBtn"></label>
+                    <input type="file" name="postImg" id="file<%= posts[i].id %>" class="postId">
+                  </div> -->
+                </div>
+              </div>
+            <% } %>
+              <textarea type="text" name="text" class="blog-textarea" readonly><%= posts[i].text %></textarea>
+          </div>
+          <% if(posts[i].userId == user.id) { %>
+            <div class="btn-wrap gap-2 d-flex justify-content-end">
+              <button type="button" class="edit" data-id="<%=posts[i].id %>" id="updateBtn"><i class="bi bi-pencil"></i></button>
+              <button type="reset" class="del" data-id="<%=posts[i].id %>"><i class="bi bi-trash3"></i></button>
+            </div>
+          <% } %>
+        </div>
+    </form>
+  </div>
+<% } %>
+</div>

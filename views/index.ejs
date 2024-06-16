@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('header.ejs') %>
+  <% if(user) { %>
+  <section class="sec posting">
+    <form action="/add" method="post" id="post-form" enctype="multipart/form-data">
+      <div class="container">
+        <div class="blog-post">
+          <div class="post-wrap">
+          <h2 class="title fw-bold">Posting</h2>
+            <div class="fileBox">
+              <div class="preview d-flex justify-content-center align-items-center">
+                <img src="" alt="" class="previewImg">
+                <img src="/img/fileBox.png" alt="" class="previewDefaultImg">
+                <label for="file" class="fileBtn"></label>
+                <input type="file" name="postImg" id="file" class="text-center">
+              </div>
+            </div>
+            <div>
+              <textarea name="text" id="post-text" placeholder="내용"></textarea>
+            </div>
+          <div class="btn-wrap gap-2 d-flex justify-content-end">
+            <button type="submit" id="post-commit" class="btn btn-primary">등록</button>
+            <button type="reset" id="post-cancel" class="btn btn-primary">취소</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+  <% } %>
+  <section class="sec post-list">
+    <%- include('blog-list.ejs') %>
+        <div class="pagination justify-content-center">
+          <% for(let i = 0; i < totalPage; i++){ %>
+            <% if((i + 1) == pageNum) { %>
+              <a href="/page/<%= (i + 1) %>" class="currentPage"><%= (i + 1) %></a>
+            <% } else { %>
+              <a href="/page/<%= (i + 1) %>"><%= (i + 1) %></a>
+            <% } %>
+          <% } %>
+        </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
+
+</body>
+</html>
